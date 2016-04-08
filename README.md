@@ -317,7 +317,12 @@ http://sandbox.hortonworks.com:9090/nifi
    
   - Open the process group by double clicking on the box that appeared on the canvas with title "Twitter Dashboard"
   ![Image](../master/screenshots/twitter-process-group.png?raw=true)
+
+  - This will open up the flow for the template we just imported. 
+  ![Image](../master/screenshots/twitter-flow-stopped.png?raw=true)
       
+  - Notice the flow is currently stopped. Before we can start it, we need to perform additional steps.
+  
   - Configure GetTwitter processor
     - Right click on 'GetTwitter' processor (near top) and click Configure
       - Under Properties:
