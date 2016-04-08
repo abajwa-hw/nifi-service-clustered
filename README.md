@@ -314,7 +314,9 @@ http://sandbox.hortonworks.com:9090/nifi
     ![Image](../master/screenshots/nifi-instantiate-template.png?raw=true)   
     
     - Select 'Twitter dashboard' and click Add
-    
+   
+  - Open the process group by double clicking on the box that appeared on the canvas with title "Twitter Dashboard"
+      
   - Configure GetTwitter processor
     - Right click on 'GetTwitter' processor (near top) and click Configure
       - Under Properties:
