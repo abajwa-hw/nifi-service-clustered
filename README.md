@@ -66,7 +66,7 @@ On bottom left -> Actions -> Add service -> check NiFi -> Next -> Scroll down to
   
 - On successful deployment you will see the NiFi service as part of Ambari stack and will be able to start/stop the service from here:
 ![Image](../master/screenshots/screenshot-nifi-service.png?raw=true)
-  - Notice that a single Nifi master and multiple Nifi nodes were started
+  - Notice that a single Nifi master and multiple Nifi nodes were started. Also notice that Nifi node can also run on host running Nifi master
   
 - You can see the parameters you configured under 'Configs' tab
 ![Image](../master/screenshots/screenshot-nifi-stack-config.png?raw=true)
@@ -88,8 +88,6 @@ curl -u admin:$PASSWORD -i -H 'X-Requested-By: ambari' -X PUT -d '{"RequestInfo"
 curl -u admin:$PASSWORD -i -H 'X-Requested-By: ambari' -X PUT -d '{"RequestInfo": {"context" :"Stop $SERVICE via REST"}, "Body": {"ServiceInfo": {"state": "INSTALLED"}}}' http://$AMBARI_HOST:8080/api/v1/clusters/$CLUSTER/services/$SERVICE
 ```
 
-- ...and also install via Blueprint. See example [here](https://github.com/abajwa-hw/ambari-workshops/blob/master/blueprints-demo-security.md) on how to deploy custom services via Blueprints
-
 #### Option 2: Automated deployment of fresh cluster via blueprints
 
 - Bring up 4 VMs imaged with RHEL/CentOS 6.x (e.g. node1-4 in this case)
@@ -108,7 +106,7 @@ yum install -y git
 sudo git clone https://github.com/abajwa-hw/nifi-service-clustered.git   /var/lib/ambari-server/resources/stacks/HDP/2.4/services/NIFI
 ```
 
-- Ensure Nifi is only started after Zookeeper
+- Ensure Nifi is only started after Zookeeper (not currently needed...but future version of Nifi will require Zookeeper)
   - Edit the `/var/lib/ambari-server/resources/stacks/HDP/2.4/role_command_order.json` file to include below:
 ```
 "NIFI_MASTER-START" : ["ZOOKEEPER_SERVER-START"],
@@ -182,15 +180,15 @@ bash ./ambari-bootstrap/deploy/deploy-recommended-cluster.bash
 
 #### Use NiFi
 
-- Once installed, wait 60-120s before logging in to ensure all the Nifi instances have enough time to register with master. In the meantime....
+- Once installed, wait 60-120s before logging in to Nifi to ensure all the Nifi nodes have enough time to register with master. In the meantime....
 
 - Check Nifi logs appearing under /var/log:
   - Master logs would be under /var/log/nifi_master on host where master was installed
   - Node logs would be under /var/log/nifi_node on host where node was installed
   
 - Check Nifi pid files appearing under /var/run/nifi:
-  - Master pid will be under /var/run/nifi/nifi-master.pid
-  - Node pid will be under /var/run/nifi/nifi-node.pid
+  - Master pid will be under /var/run/nifi/nifi-master.pid on host where master was installed
+  - Node pid will be under /var/run/nifi/nifi-node.pid on host where node was installed
   
 - The NiFi webUI login page should come up at the below link: 
 http://sandbox.hortonworks.com:9090/nifi
