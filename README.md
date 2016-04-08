@@ -70,13 +70,20 @@ On bottom left -> Actions -> Add service -> check NiFi -> Next -> Scroll down to
   - Notice that a single Nifi master and multiple Nifi nodes were started. Also notice that Nifi node can also run on host running Nifi master
   
 - You can see the parameters you configured under 'Configs' tab. There are a number of config sections exposed here:
-  - nifi-ambari-config: high level set of configs - most users would only need to update the properties in this accordion (would be good to eventually expose these via enhanced config widgets)
-  - nifi-bootstrap-env: Template for bootstrap.conf
-  - nifi-flow-env: Initial template for flow.xml. Only used during initial install of Nifi service. Post-install this can be reconfigured from Nifi UI under Controller Settings
-  - nifi-master-properties-env: template for nifi.properties file for *Nifi master*
-  - nifi-master-logback-env: template for logback for *Nifi master*
-  - nifi-node-properties-env: template for nifi.properties file for *Nifi node*
-  - nifi-node-logback-env: template for logback for *Nifi master*
+  - nifi-ambari-config: 
+    - high level set of configs - most users would only need to update the properties in this accordion (would be good to eventually expose these via enhanced config widgets)
+  - nifi-bootstrap-env: 
+    - Template for bootstrap.conf
+  - nifi-flow-env: 
+    - Initial template for flow.xml. Only used during initial install of Nifi service. Post-install this can be reconfigured from Nifi UI under Controller Settings
+  - nifi-master-properties-env: 
+    - template for nifi.properties file for *Nifi master*
+  - nifi-master-logback-env: 
+    - template for logback for *Nifi master*
+  - nifi-node-properties-env: 
+    - template for nifi.properties file for *Nifi node*
+  - nifi-node-logback-env: 
+    - template for logback for *Nifi master*
 
 **TODO** add screenshot
 
