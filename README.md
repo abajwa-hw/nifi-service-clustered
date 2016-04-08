@@ -57,7 +57,7 @@ sudo service ambari-server restart
 
 - Then you can click on 'Add Service' from the 'Actions' dropdown menu in the bottom left of the Ambari dashboard:
 
-On bottom left -> Actions -> Add service -> check NiFi server -> Next -> Next -> Change any config you like (e.g. install dir, port, setup_prebuilt or values in nifi.properties) -> Next -> Deploy
+On bottom left -> Actions -> Add service -> check NiFi -> Next -> Scroll down to Nifi node and click + to add Nifi nodes -> Next -> Change any config you like (e.g. install dir, port or values in nifi.properties) -> Next -> Deploy
 
   - By default:
     - Port is set to 9090
@@ -65,7 +65,9 @@ On bottom left -> Actions -> Add service -> check NiFi server -> Next -> Next ->
     - Run schedule for Nifi's Ambari reporting task is 1 min
   
 - On successful deployment you will see the NiFi service as part of Ambari stack and will be able to start/stop the service from here:
-
+![Image](../master/screenshots/screenshot-nifi-service.png?raw=true)
+  - Notice that a single Nifi master and multiple Nifi nodes were started
+  
 - You can see the parameters you configured under 'Configs' tab
 ![Image](../master/screenshots/screenshot-nifi-stack-config.png?raw=true)
 
