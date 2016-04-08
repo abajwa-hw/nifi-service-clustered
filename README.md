@@ -5,8 +5,8 @@ Features:
 
 - Downloads the current GA version - HDF 1.2.0.0 package (nifi 0.6.0)
 - Exposes nifi.properties, bootstrap.conf, logback.xml in Ambari UI (so you can configure port, memory, log dir etc)
-~~- Sets up initial flow.xml.gz that sets up Ambari reporting task to send Ambari metrics~~
-~~- Includes metrics widgets from [here](https://cwiki.apache.org/confluence/display/NIFI/Ambari+Metrics)~~
+- ~~Sets up initial flow.xml.gz that sets up Ambari reporting task to send Ambari metrics~~
+- ~~Includes metrics widgets from [here](https://cwiki.apache.org/confluence/display/NIFI/Ambari+Metrics)~~
 
 Limitations:
 
@@ -423,6 +423,6 @@ curl -u admin:$PASSWORD -i -H 'X-Requested-By: ambari' -X DELETE http://$AMBARI_
     ```
    - Remove artifacts
     ```
-    rm -rf /opt/nifi*
-    rm /tmp/nifi*.zip
+    rm -rf /opt/HDF-*
+    rm /tmp/HDF-*.zip
     ```   
