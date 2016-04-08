@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<configuration>
+
+  <property>
+    <name>nifi_master_log_dir</name>
+    <value>/var/log/nifi_master</value>    
+    <description>NiFi Master Log dir</description>
+  </property> 
+  
+  <property>
+    <name>nifi_node_log_dir</name>
+    <value>/var/log/nifi_node</value>    
+    <description>NiFi Node Log dir</description>
+  </property> 
+  
+ <property>
+    <name>nifi_pid_dir</name>
+    <value>/var/run/nifi</value>
+    <description>Dir containing process ID file</description>
+  </property>
+
+  <property>
+    <name>nifi_user</name>
+    <value>nifi</value>
+    <property-type>USER</property-type>
+    <description>User nifi daemon runs as</description>
+  </property> 
+        
+  <property>
+    <name>nifi_group</name>
+    <value>nifi</value>
+    <property-type>GROUP</property-type>
+    <description>nifi group</description>
+  </property> 
+          
+            
+  <property>
+    <name>content</name>
+    <value>
+# Java command to use when running NiFi
+java=java
+
+# Username to use when running NiFi. This value will be ignored on Windows.
+run.as={{nifi_user}}
+
+# Configure where NiFi's lib and conf directories live
+lib.dir=./lib
+conf.dir=./conf
+
+# How long to wait after telling NiFi to shutdown before explicitly killing the Process
+graceful.shutdown.seconds=20
+
+# Disable JSR 199 so that we can use JSP's without running a JDK
+java.arg.1=-Dorg.apache.jasper.compiler.disablejsr199=true
+
+# JVM memory settings
+java.arg.2=-Xms{{nifi_initial_mem}}
+java.arg.3=-Xmx{{nifi_max_mem}}
+
+# Enable Remote Debugging
+#java.arg.debug=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8000
+
+java.arg.4=-Djava.net.preferIPv4Stack=true
+
+# allowRestrictedHeaders is required for Cluster/Node communications to work properly
+java.arg.5=-Dsun.net.http.allowRestrictedHeaders=true
+java.arg.6=-Djava.protocol.handler.pkgs=sun.net.www.protocol
+
+# Java 7 and below have issues with Code Cache. The following lines allow us to run well even with
+# many classes loaded in the JVM.
+#java.arg.7=-XX:ReservedCodeCacheSize=256m
+#java.arg.8=-XX:CodeCacheFlushingMinimumFreeSpace=10m
+#java.arg.9=-XX:+UseCodeCacheFlushing
+#java.arg.11=-XX:PermSize=128M
+#java.arg.12=-XX:MaxPermSize=128M
+
+# The G1GC is still considered experimental but has proven to be very advantageous in providing great
+# performance without significant "stop-the-world" delays.
+#java.arg.13=-XX:+UseG1GC
+
+#Set headless mode by default
+java.arg.14=-Djava.awt.headless=true
+
+#Ambari Metrics Collector URL - passed in to flow.xml for AmbariReportingTask
+java.arg.15=-Dambari.metrics.collector.url=http://{{metrics_collector_host}}:{{metrics_collector_port}}/ws/v1/timeline/metrics
+
+#Application ID - used in flow.xml - passed into flow.xml for AmbariReportingTask 
+java.arg.16=-Dambari.application.id=nifi
+
+
+###
+# Notification Services for notifying interested parties when NiFi is stopped, started, dies
+###
+
+# XML File that contains the definitions of the notification services
+notification.services.file=./conf/bootstrap-notification-services.xml
+
+# In the case that we are unable to send a notification for an event, how many times should we retry?
+notification.max.attempts=5
+
+# Comma-separated list of identifiers that are present in the notification.services.file; which services should be used to notify when NiFi is started?
+#nifi.start.notification.services=email-notification
+
+# Comma-separated list of identifiers that are present in the notification.services.file; which services should be used to notify when NiFi is stopped?
+#nifi.stop.notification.services=email-notification
+
+# Comma-separated list of identifiers that are present in the notification.services.file; which services should be used to notify when NiFi dies?
+#nifi.dead.notification.services=email-notification
+
+  </value>
+  <description>Template for bootstrap.conf</description>
+  
+  </property>
+
+</configuration>
+

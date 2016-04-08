@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+ 
+<configuration>
+
+  <!-- params for service -->
+
+  <property>
+    <name>nifi.install_dir</name>
+    <value>/opt</value>
+    <description>Local dir where to install Nifi master. NiFi folder will be created as a subdir of this dir e.g. /opt/HDF-x.x.x.x</description>
+  </property> 
+
+  <property>
+    <name>nifi.master.port</name>
+    <value>9090</value>
+    <description>Port NiFi cluster manager runs on</description>
+  </property>
+
+  <property>
+    <name>nifi.master.protocol.port</name>
+    <value>9088</value>
+    <description>Port NiFi cluster manager protocol runs on</description>
+  </property>
+  
+  <property>
+    <name>nifi.node.port</name>
+    <value>7080</value>
+    <description>Port NiFi node runs on</description>
+  </property>
+
+  <property>
+    <name>nifi.node.protocol.port</name>
+    <value>7088</value>
+    <description>Port NiFi node protocol runs on</description>
+  </property>
+
+
+  <property>
+    <name>nifi.initial_mem</name>
+    <value>512m</value>
+    <description>Initial memory allocation for NiFi JVM (Xms)</description>
+  </property>
+  
+  <property>
+    <name>nifi.max_mem</name>
+    <value>512m</value>
+    <description>Max memory allocation for Nifi JVM (Xmx)</description>
+  </property>
+    
+  <!-- <property>
+    <name>nifi.setup_prebuilt</name>
+    <value>true</value>
+    <description>If false, latest Nifi will be built from source. Otherwise a prebuilt version will be downloaded</description>
+  </property> -->
+
+  <property>
+    <name>nifi.ambari_reporting_frequency</name>
+    <value>1 mins</value>
+    <description>Frequency with which Nifi metrics will be reported to Ambari Metrics. Only used during initial install of service. Post-install this can be reconfigured from Nifi UI under Controller Settings</description>
+  </property>
+  
+  
+  
+  
+    
+</configuration>  
