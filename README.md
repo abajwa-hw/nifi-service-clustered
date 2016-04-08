@@ -343,7 +343,7 @@ http://sandbox.hortonworks.com:9090/nifi
   - If setup correctly, the top left hand of each processor on the canvas will show a red square (indicating the flow is stopped)
 
   - Click the Start button (green triangle near top of screen) to start the flow
-  - After few seconds you will see data flowing
+  - The state of each processor should change to started. After few seconds you will see the processor statistics updating which shows that data is flowing
  ![Image](../master/screenshots/twitter-flow.png?raw=true)
  
    - Create Hive table to be able to run queries on the tweets
