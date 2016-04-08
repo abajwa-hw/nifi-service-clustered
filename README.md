@@ -13,6 +13,7 @@ Limitations:
 - This is not an officially supported service and *is not meant to be deployed in production systems*. It is only meant for testing demo/purposes
 - It does not support Ambari/HDP upgrade process and will cause upgrade problems if not removed prior to upgrade
 - Not tested on secured clusters
+- Metrics integration WIP
 
 Authors: 
   - [Ali Bajwa](https://github.com/abajwa-hw): Nifi Install/start/stop via Ambari
@@ -68,8 +69,16 @@ On bottom left -> Actions -> Add service -> check NiFi -> Next -> Scroll down to
 ![Image](../master/screenshots/screenshot-nifi-service.png?raw=true)
   - Notice that a single Nifi master and multiple Nifi nodes were started. Also notice that Nifi node can also run on host running Nifi master
   
-- You can see the parameters you configured under 'Configs' tab
-![Image](../master/screenshots/screenshot-nifi-stack-config.png?raw=true)
+- You can see the parameters you configured under 'Configs' tab. There are a number of config sections exposed here:
+  - nifi-ambari-config: high level set of configs - most users would only need to update the properties in this accordion (would be good to eventually expose these via enhanced config widgets)
+  - nifi-bootstrap-env: Template for bootstrap.conf
+  - nifi-flow-env: Initial template for flow.xml. Only used during initial install of Nifi service. Post-install this can be reconfigured from Nifi UI under Controller Settings
+  - nifi-master-properties-env: template for nifi.properties file for *Nifi master*
+  - nifi-master-logback-env: template for logback for *Nifi master*
+  - nifi-node-properties-env: template for nifi.properties file for *Nifi node*
+  - nifi-node-logback-env: template for logback for *Nifi master*
+
+**TODO** add screenshot
 
 - One benefit to wrapping the component in Ambari service is that you can now monitor/manage this service remotely via REST API
 ```
