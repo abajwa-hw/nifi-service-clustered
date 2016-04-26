@@ -170,8 +170,8 @@ curl -u admin:admin -H  X-Requested-By:ambari http://localhost:8080/api/v1/hosts
 service ambari-agent status
 ```
 
-- (Optional) - You can generate BP and cluster file using Ambari recommendations API using these steps. 
-For more details, on the bootstrap scripts see bootstrap script git
+- Generate blueprint: you can generate BP and cluster file using Ambari recommendations API using these steps. 
+For more details on the bootstrap scripts, see [bootstrap script github](https://github.com/seanorama/ambari-bootstrap)
 
 ```
 yum install -y python-argparse
