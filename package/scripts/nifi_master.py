@@ -151,13 +151,13 @@ class Master(Script):
     properties_content=InlineTemplate(params.nifi_master_properties_content)
     File(format("{params.conf_dir}/nifi.properties"), content=properties_content, owner=params.nifi_user, group=params.nifi_group) # , mode=0777)    
 
-    #write out flow.xml.gz only during install
-    #if isInstall:
-    #  Execute('echo "First time setup so generating flow.xml.gz" >> ' + params.nifi_master_log_file)    
-    #  flow_content=InlineTemplate(params.nifi_flow_content)
-    #  File(format("{params.conf_dir}/flow.xml"), content=flow_content, owner=params.nifi_user, group=params.nifi_group)
-    #  Execute(format("cd {params.conf_dir}; mv flow.xml.gz flow_$(date +%d-%m-%Y).xml.gz ;"), user=params.nifi_user, ignore_failures=True)
-    #  Execute(format("cd {params.conf_dir}; gzip flow.xml;"), user=params.nifi_user)
+    #write out flow.tar only during install to setup Ambari metrics reporting task in Nifi
+    if isInstall:
+      Execute('echo "First time setup so generating flow.tar" >> ' + params.nifi_master_log_file)    
+      flow_content=InlineTemplate(params.nifi_flow_content)
+      File(format("{params.conf_dir}/flow.xml"), content=flow_content, owner=params.nifi_user, group=params.nifi_group)
+      Execute(format("cd {params.conf_dir}; mv flow.tar flow_$(date +%d-%m-%Y).tar ;"), user=params.nifi_user, ignore_failures=True)
+      Execute(format("cd {params.conf_dir}; tar -cvf flow.tar flow.xml;"), user=params.nifi_user)
 
     #write out boostrap.conf
     bootstrap_content=InlineTemplate(params.nifi_boostrap_content)

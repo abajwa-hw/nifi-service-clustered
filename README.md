@@ -5,15 +5,15 @@ Features:
 
 - Downloads the current GA version - HDF 1.2.0.0 package (nifi 0.6.0)
 - Exposes nifi.properties, bootstrap.conf, logback.xml in Ambari UI (so you can configure port, memory, log dir etc)
-- ~~Sets up initial flow.xml.gz that sets up Ambari reporting task to send Ambari metrics~~
-- ~~Includes metrics widgets from [here](https://cwiki.apache.org/confluence/display/NIFI/Ambari+Metrics)~~
+- Sets up initial flow.tar that sets up Ambari reporting task to send Ambari metrics
+- Includes metrics widgets from [here](https://cwiki.apache.org/confluence/display/NIFI/Ambari+Metrics)
 
 Limitations:
 
 - This is not an officially supported service and *is not meant to be deployed in production systems*. It is only meant for testing demo/purposes
 - It does not support Ambari/HDP upgrade process and will cause upgrade problems if not removed prior to upgrade
 - Not tested on secured clusters
-- Metrics integration WIP
+- ~~Metrics integration WIP~~
 
 Authors: 
   - [Ali Bajwa](https://github.com/abajwa-hw): Nifi Install/start/stop via Ambari
