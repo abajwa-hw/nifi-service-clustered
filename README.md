@@ -306,7 +306,7 @@ http://sandbox.hortonworks.com:9090/nifi
   ```  
     
 - Now open Nifi webui and run the remaining steps there:    
-  - Download prebuilt Twitter_Dashboard.xml template to your laptop from [here](https://raw.githubusercontent.com/abajwa-hw/ambari-nifi-service/master/demofiles/Twitter_Dashboard.xml)
+  - Download prebuilt Twitter_dashboard_(clustered).xml template to your laptop from [here](https://github.com/abajwa-hw/ambari-nifi-service/raw/master/demofiles/Twitter_dashboard_(clustered).xml)
   - Import flow template info Nifi:
     - Import template by clicking on Templates (third icon from right) which will launch the 'Nifi Flow templates' popup
      ![Image](../master/screenshots/nifi-flow-templates.png?raw=true)
